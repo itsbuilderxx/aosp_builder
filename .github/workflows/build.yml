@@ -35,7 +35,10 @@ jobs:
         WORKSPACE=$(pwd)
         mkdir -p $WORKSPACE/android_source
         mkdir -p $WORKSPACE/rom_sources
-
+        mkdir -p $WORKSPACE/rom_sources/device
+        mkdir -p $WORKSPACE/rom_sources/kernel
+        mkdir -p $WORKSPACE/rom_sources/vendor
+        
     - name: Sync Android Source
       run: |
         cd $WORKSPACE/android_source
