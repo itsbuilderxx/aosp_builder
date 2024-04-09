@@ -15,8 +15,8 @@ jobs:
 
     - name: Set Up Git Config
       run: |
-        git config --global user.name "Your Name"
-        git config --global user.email "you@example.com"
+        git config --global user.name "itsbuilderxxx"
+        git config --global user.email "rafsanhasan064@gmail.com"
 
     - name: Install Dependencies
       run: |
@@ -39,13 +39,13 @@ jobs:
     - name: Sync Android Source
       run: |
         cd $WORKSPACE/android_source
-        repo init -u <android_manifest_URL> -b <android_branch>
+        repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r31
         repo sync -j$(nproc --all)
 
     - name: Sync ROM Sources
       run: |
         cd $WORKSPACE/rom_sources
-        repo init -u <ROM_manifest_URL> -b <rom_branch>
+        repo init -u https://github.com/RisingTechOSS/android -b fourteen
         repo sync -j$(nproc --all)
 
     - name: Source build/envsetup.sh
@@ -55,7 +55,7 @@ jobs:
     - name: Clone Device Tree, Kernel, and Vendor
       run: |
         cd $WORKSPACE/rom_sources
-        git clone -b <device_tree_branch> <device_tree_repo_URL> device/<device_name>
+        git clone -b <device_tree_branch> https://github.com/alternoegraha/device_xiaomi_fog device/xiaomi
         git clone -b <kernel_branch> <kernel_repo_URL> kernel/<kernel_name>
         git clone -b <vendor_branch> <vendor_repo_URL> vendor/<vendor_name>
 
@@ -64,3 +64,18 @@ jobs:
         cd $WORKSPACE/rom_sources
         lunch ROMNAME_<device_name>-userdebug
         m bacon -j$(nproc --all)
+
+    - name: Create Release
+      if: success()
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.sha }}
+        release_name: Release ${{ github.sha }}
+        body: |
+          Custom ROM built successfully from commit: ${{ github.sha }}
+          Add any additional release notes here.
+        draft: false
+        prerelease: false
