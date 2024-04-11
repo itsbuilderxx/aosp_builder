@@ -24,10 +24,11 @@ jobs:
 
     - name: Install repo
       run: |
-        export REPO=$(mktemp /tmp/repo.XXXXXXXXX)
-        sudo curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo
-        sudo gpg --recv-keys 8BB9AD793E8E6153AF0F9A4416530D5E920F5C65
-        sudo curl -s https://storage.googleapis.com/git-repo-downloads/repo.asc | sudo gpg --verify - ${REPO} && install -m 755 ${REPO} /usr/bin/repo
+        sudo apt-get install -y openjdk-8-jdk
+        mkdir -p ~/bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        export PATH=~/bin:$PATH
 
     - name: Set up rombuilds folder
       run: mkdir -p ~/rombuilds
