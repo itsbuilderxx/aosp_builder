@@ -3,6 +3,9 @@
 # Set environment variables
 ROM_DIR=/rombuilds
 DEVICE=fog
+git config --global user.name "itsbuilderxx"
+git config --global user.email "karimhasan@gmail.com"
+
 
 # Install dependencies
 sudo apt-get update
