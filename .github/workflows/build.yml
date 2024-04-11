@@ -35,8 +35,8 @@ jobs:
     - name: Sync source code into rombuilds folder
       run: |
         cd ~/rombuilds
-        ~/bin/repo init -u https://github.com/SuperiorExtended/manifest -b UDC
-        ~/bin/repo -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
+        ~/bin/repo init -u https://github.com/SuperiorExtended/manifest -b UDC --git-lfs
+        ~/bin/repo sync --force-sync
 
     - name: Clone kernel source
       run: |
