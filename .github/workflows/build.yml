@@ -28,10 +28,6 @@ jobs:
         mkdir -p ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
-        export PATH=~/bin:$PATH
-        echo "$PATH"
-        ls -l ~/bin
-        ~/bin/repo --version
 
     - name: Set up rombuilds folder
       run: mkdir -p ~/rombuilds
@@ -39,8 +35,8 @@ jobs:
     - name: Sync source code into rombuilds folder
       run: |
         cd ~/rombuilds
-        repo init -u https://github.com/SuperiorExtended/manifest -b UDC
-        repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
+        ~/bin/repo init -u https://github.com/SuperiorExtended/manifest -b UDC
+        ~/bin/repo -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
 
     - name: Clone kernel source
       run: |
