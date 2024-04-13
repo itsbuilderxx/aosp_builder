@@ -8,7 +8,7 @@ upload_files() {
 }
 
 # Set your API key
-api_key="<your-api-key>"
+api_key="f8e81bb1-f62a-4408-a02b-273444e6049d"
 
 # Set environment variables
 RAM_DISK_SIZE_GB=280
