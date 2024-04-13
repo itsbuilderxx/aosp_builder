@@ -37,6 +37,7 @@ chmod +x "${binary_dir}/go-pd"
 # Set Git configurations
 git config --global user.name "itsbuilderxx"
 git config --global user.email "karimhasan@gmail.com"
+git config --global color.ui false
 
 # Make the environment non-interactive
 export DEBIAN_FRONTEND=noninteractive
