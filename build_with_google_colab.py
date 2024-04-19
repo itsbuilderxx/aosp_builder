@@ -43,7 +43,7 @@ os.chmod(os.path.join(binary_dir, "go-pd"), 0o755)
 # Set Git configurations
 !git config --global user.name "itsbuilderxx"
 !git config --global user.email "karimhasan@gmail.com"
-
+!git config --global color.ui false
 # Make the environment non-interactive
 os.environ["DEBIAN_FRONTEND"] = "noninteractive"
 
